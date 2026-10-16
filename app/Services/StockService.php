@@ -39,6 +39,7 @@ class StockService
             $locked->estoque_atual += $tipo === TipoMovimento::Entrada ? $quantidade : -$quantidade;
             $locked->save();
             $product->estoque_atual = $locked->estoque_atual;
+            $product->syncOriginalAttribute('estoque_atual');
 
             return StockMovement::create([
                 'product_id' => $locked->id,

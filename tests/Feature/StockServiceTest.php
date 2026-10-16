@@ -20,6 +20,7 @@ it('registra entrada, soma no estoque e grava saldo após', function () {
 
     expect($produto->estoque_atual)->toBe(10)
         ->and($produto->fresh()->estoque_atual)->toBe(10)
+        ->and($produto->isDirty('estoque_atual'))->toBeFalse()
         ->and($mov->tipo)->toBe(TipoMovimento::Entrada)
         ->and($mov->motivo)->toBe(MotivoMovimento::Fornecedor)
         ->and($mov->quantidade)->toBe(7)
